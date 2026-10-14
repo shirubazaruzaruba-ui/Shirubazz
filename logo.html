@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiruba — Logo Portfolio & Jasa Desain</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f9fc;
+            font-family: sans-serif;
+            color: #2a2a3a;
+            overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #f8f9fc, #eef3ff, #f0f5ff, #f8f9fc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid #ffffff;
+            box-shadow:
+                0 10px 40px rgba(100, 150, 255, 0.35),
+                0 0 0 1px rgba(100, 150, 255, 0.1);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #2a2a3a;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 16px;
+            color: #6ba3ff;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .hero .sub {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #8888a0;
+            max-width: 300px;
+        }
+
+        .hero .cta {
+            margin-top: 30px;
+            display: inline-block;
+            background: #6ba3ff;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(100, 150, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hero .cta:hover {
+            background: #4d8fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(100, 150, 255, 0.6);
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            color: #2a2a3a;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        section .sub-judul {
+            text-align: center;
+            color: #8888a0;
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        /* PRICING CARDS */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            align-items: center;
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow:
+                0 4px 20px rgba(100, 150, 255, 0.15),
+                0 0 0 1px rgba(100, 150, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 15px 40px rgba(100, 150, 255, 0.3),
+                0 0 0 1px rgba(100, 150, 255, 0.1);
+        }
+
+        .pricing-card.populer {
+            border: 2px solid #6ba3ff;
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .pricing-card.populer:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .pricing-card .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #6ba3ff;
+            color: white;
+            font-size: 10px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 16px;
+            color: #8888a0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .pricing-card .harga {
+            font-size: 32px;
+            color: #2a2a3a;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .pricing-card .harga .rp {
+            font-size: 16px;
+            color: #8888a0;
+            font-weight: 400;
+            vertical-align: top;
+        }
+
+        .pricing-card .per {
+            font-size: 12px;
+            color: #8888a0;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            font-size: 13px;
+            color: #555568;
+            padding: 8px 0;
+            padding-left: 22px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .pricing-card ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #6ba3ff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .pricing-card .order {
+            display: block;
+            width: 100%;
+            background: #f0f5ff;
+            color: #6ba3ff;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .pricing-card .order:hover {
+            background: #6ba3ff;
+            color: white;
+        }
+
+        .pricing-card.populer .order {
+            background: #6ba3ff;
+            color: white;
+        }
+
+        .pricing-card.populer .order:hover {
+            background: #4d8fff;
+        }
+
+        @media (max-width: 700px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .pricing-card.populer {
+                transform: scale(1);
+            }
+            .pricing-card.populer:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* PORTOFOLIO */
+        .grid-logo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 700px) {
+            .grid-logo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .logo-item {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow:
+                0 4px 20px rgba(100, 150, 255, 0.15),
+                0 0 0 1px rgba(100, 150, 255, 0.05);
+        }
+
+        .logo-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow:
+                0 15px 40px rgba(100, 150, 255, 0.3),
+                0 0 0 1px rgba(100, 150, 255, 0.1);
+        }
+
+        .logo-item img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(100, 150, 255, 0.25);
+            background: #f8f9fc;
+        }
+
+        .logo-item p {
+            font-size: 12px;
+            color: #8888a0;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .tentang p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555568;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .kontak {
+            text-align: center;
+        }
+
+        .kontak a {
+            display: inline-block;
+            background: #6ba3ff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(100, 150, 255, 0.3);
+        }
+
+        .kontak a:hover {
+            background: #4d8fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(100, 150, 255, 0.5);
+        }
+
+        .kontak .info {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #8888a0;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8888a0;
+            font-size: 12px;
+            border-top: 1px solid #e8ecf5;
+        }
+
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-anim.muncul {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/b9925b7e-d26d-4d5b-a62a-83ec8418bffc.jpg" alt="Logo Shiruba">
+        <h1>SHIRUBA</h1>
+        <p class="tagline">DIGITAL ART & DESIGN</p>
+        <p class="sub">Logo yang bercerita, karya yang bermakna.</p>
+        <a href="#layanan" class="cta">Lihat Paket Harga</a>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="tentang scroll-anim">
+        <h2>TENTANG</h2>
+        <p>Shiruba adalah brand desain digital yang menggabungkan seni, teknologi, dan cerita.</p>
+        <p>Setiap logo dibuat dengan tangan — bukan template, bukan AI instan.</p>
+        <p>Karena karya yang baik lahir dari proses, bukan dari tombol.</p>
+    </section>
+
+    <!-- LAYANAN -->
+    <section id="layanan" class="scroll-anim">
+        <h2>LAYANAN</h2>
+        <p class="sub-judul">Pilih paket sesuai kebutuhanmu</p>
+
+        <div class="pricing-grid">
+
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="harga"><span class="rp">Rp</span> 5.000</div>
+                <div class="per">per logo</div>
+                <ul>
+                    <li>1 konsep logo</li>
+                    <li>2x revisi</li>
+                    <li>Format PNG</li>
+                    <li>Pengiriman 1 hari</li>
+                </ul>
+                <a href="https://wa.me/6283189200985?text=Halo%20Shiruba,%20saya%20mau%20order%20Paket%20Basic%20(Rp%205.000)" class="order" target="_blank">Order</a>
+            </div>
+
+            <div class="pricing-card populer">
+                <div class="badge">POPULER</div>
+                <h3>Standard</h3>
+                <div class="harga"><span class="rp">Rp</span> 7.000</div>
+                <div class="per">per logo</div>
+                <ul>
+                    <li>3 konsep logo</li>
+                    <li>5x revisi</li>
+                    <li>Format PNG + JPG</li>
+                    <li>Versi warna & hitam-putih</li>
+                    <li>Pengiriman 1 hari</li>
+                </ul>
+                <a href="https://wa.me/6283189200985?text=Halo%20Shiruba,%20saya%20mau%20order%20Paket%20Standard%20(Rp%207.000)" class="order" target="_blank">Order</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <div class="harga"><span class="rp">Rp</span> 10.000</div>
+                <div class="per">per logo</div>
+                <ul>
+                    <li>5 konsep logo</li>
+                    <li>Revisi tanpa batas</li>
+                    <li>Format PNG, JPG, SVG</li>
+                    <li>Versi warna, hitam-putih, transparan</li>
+                    <li>Mockup kartu nama</li>
+                    <li>Pengiriman 1 hari</li>
+                </ul>
+                <a href="https://wa.me/6283189200985?text=Halo%20Shiruba,%20saya%20mau%20order%20Paket%20Premium%20(Rp%2010.000)" class="order" target="_blank">Order</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PORTOFOLIO (12 LOGO) -->
+    <section class="scroll-anim">
+        <h2>PORTOFOLIO</h2>
+        <p class="sub-judul">Karya yang udah dibuat</p>
+        <div class="grid-logo">
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/e8bb1d11-ea2c-4e76-9d0e-43c7041f2fd1/e562a2c6-1246-485c-98d4-c8ffb4e00df2.jpg" alt="Logo Roblox">
+                <p>Logo Roblox</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/e8bb1d11-ea2c-4e76-9d0e-43c7041f2fd1/0b46d526-974f-487b-9a94-f579db37fe34.png" alt="Rumah + Gajah">
+                <p>Rumah + Gajah</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/b9925b7e-d26d-4d5b-a62a-83ec8418bffc.jpg" alt="File.E">
+                <p>File.E</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/e26ae6cf-d21c-4c49-a9b4-debbd7ce69fe.jpg" alt="VPN Spy System">
+                <p>VPN Spy System</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/e9310807-7914-41a5-a634-e22715075038.jpg" alt="Fujiyuki Logo">
+                <p>Fujiyuki Logo</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/4cebf5ed-1f4a-4601-b149-c2830a075469.jpg" alt="Tag + Hati">
+                <p>Tag + Hati</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/9b25f0b5-bf88-4ddf-aea2-80aefce0fb66.jpg" alt="Matahari + Hati">
+                <p>Matahari + Hati</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/5d4c0a89-722d-4c43-b2ac-6f20cf25be14.jpg" alt="Pohon">
+                <p>Pohon</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/cc121ce6-c1db-45cd-a644-1cd253e38ca0.jpg" alt="Galeri">
+                <p>Galeri</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/949a24eb-29af-4b24-941c-0155432d09b0.jpg" alt="Buku + Mata">
+                <p>Buku + Mata</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/b591442e-87ac-4974-8bbc-b30e81d75631.jpg" alt="Awan">
+                <p>Awan</p>
+            </div>
+
+            <div class="logo-item">
+                <img src="https://i.supaimg.com/32a87b63-a0ca-44b4-bb93-38b24c69a869/702a891a-15a6-44bf-8b34-ad57b3673d7f.jpg" alt="Kesehatan Mental">
+                <p>Kesehatan Mental</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="kontak scroll-anim">
+        <h2>HUBUNGI</h2>
+        <a href="mailto:shirubazaruzaruba@gmail.com">📧 Email</a>
+        <a href="https://wa.me/6283189200985" target="_blank">💬 WhatsApp</a>
+        <div class="info">
+            <p>📧 shirubazaruzaruba@gmail.com</p>
+            <p>📱 0831-8920-0985</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Shiruba — Dibuat dengan ❤️ dan kode</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            let elements = document.querySelectorAll('.scroll-anim');
+            elements.forEach(el => {
+                let posisi = el.getBoundingClientRect().top;
+                if (posisi < window.innerHeight - 100) {
+                    el.classList.add('muncul');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
